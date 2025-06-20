@@ -1,5 +1,6 @@
 from graphviz import Digraph
 import textwrap
+import re
 
 
 class Graph:
@@ -70,6 +71,7 @@ class Graph:
         :return:
         """
 
+
         # Prevent duplicating nodes with same name
         if name in self.nodes:
             print(f"(!) Node already exists: {name}")
@@ -82,6 +84,10 @@ class Graph:
             else:
                 # If text for the node is desired, then format it for a 'prettier' appearance in the node
                 if text is not None:
+                    # 1) Remove more than three ###, ===, --- in string.
+                    pattern = re.compile(r'[#=-]{4,}')
+                    text = pattern.sub('', text)
+                    # 2) Format the text for the node
                     text = self._format_text(self._find_lines(text), title_colour=title_colour)
 
                 # a) Applied automatic chaining, thus connecting to previous node if desired
@@ -96,8 +102,8 @@ class Graph:
                 # c) Applies manual chaining, thus previous node is defined by user
                 else:
                     previous_node = connect_from
+                    self.node_previous_auto = name
 
-                print(f"name: {name} => previous node: {self.node_previous_auto}")
                 # Finally, store the information of this node in the dict
                 self.nodes[name] = {"connect_from": previous_node,
                                     "cluster": cluster,
