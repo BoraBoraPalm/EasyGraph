@@ -95,6 +95,10 @@ Note: Plan to bring plenty of supplies and fishing rods.
 ##################################
 g.add_node(name="Build and sail boat", text=text, cluster="Deep Dream", title_colour="green")
 
+
+g.add_node(name="Test1", text="abc", cluster="Deep Dream", connect_from="Build and sail boat")
+g.add_node(name="Test2", text="def", cluster="Deep Dream", connect_from="Build and sail boat")
+
 g.create()
 g.save(name="lalalalalala")
 

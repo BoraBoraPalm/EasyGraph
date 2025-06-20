@@ -43,7 +43,7 @@ class Graph:
             self.clusters[name] = {"text": text, "supercluster": supercluster}
 
 
-    def add_node(self, name:str, *, connect_from:str|None="auto", text:str|None=None, cluster:str|None=None, title_colour:str="yellow"):
+    def add_node(self, name:str, *, connect_from:str|list[str]|None="auto", text:str|None=None, cluster:str|None=None, title_colour:str="yellow"):
         """
         For defining and adding a new node to the graph.
 
@@ -227,8 +227,15 @@ class Graph:
 
         # 6) Finally, add the edges between the nodes to generate a directed graph!
         for n, val in self.nodes.items():
-            if val["connect_from"]:
+            # a) If multiple previous nodes are existing, thus list of strings
+            if isinstance(val["connect_from"], list):
+                for edge in val["connect_from"]:
+                    self.dot.edge(edge, n)
+            # b) If only string is available, thus on previous node
+            elif val["connect_from"]:
                 self.dot.edge(val["connect_from"], n)
+
+
 
     def _format_text(self, text, title_colour) -> str:
         """

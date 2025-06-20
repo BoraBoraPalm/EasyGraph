@@ -52,8 +52,32 @@
 <path fill="none" stroke="black" d="M188,-510.39C188,-494.23 188,-476.55 188,-459.32"/>
 <polygon fill="black" stroke="black" points="191.5,-459.25 188,-449.25 184.5,-459.25 191.5,-459.25"/>
 </g>
-<!-- Create AI -->
+<!-- Test1 -->
 <g id="node3" class="node">
+<title>Test1</title>
+<path fill="azure" stroke="black" stroke-width="2" d="M167,-195C167,-195 137,-195 137,-195 131,-195 125,-189 125,-183 125,-183 125,-171 125,-171 125,-165 131,-159 137,-159 137,-159 167,-159 167,-159 173,-159 179,-165 179,-171 179,-171 179,-183 179,-183 179,-189 173,-195 167,-195"/>
+<text text-anchor="start" x="140" y="-172.8" font-family="DejaVu Sans" font-size="14.00">abc</text>
+</g>
+<!-- Build and sail boat&#45;&gt;Test1 -->
+<g id="edge5" class="edge">
+<title>Build and sail boat&#45;&gt;Test1</title>
+<path fill="none" stroke="black" d="M172.58,-285.74C167.06,-256.85 161.21,-226.22 157.16,-205.04"/>
+<polygon fill="black" stroke="black" points="160.59,-204.34 155.28,-195.17 153.72,-205.65 160.59,-204.34"/>
+</g>
+<!-- Test2 -->
+<g id="node4" class="node">
+<title>Test2</title>
+<path fill="azure" stroke="black" stroke-width="2" d="M239,-195C239,-195 209,-195 209,-195 203,-195 197,-189 197,-183 197,-183 197,-171 197,-171 197,-165 203,-159 209,-159 209,-159 239,-159 239,-159 245,-159 251,-165 251,-171 251,-171 251,-183 251,-183 251,-189 245,-195 239,-195"/>
+<text text-anchor="start" x="213" y="-172.8" font-family="DejaVu Sans" font-size="14.00">def</text>
+</g>
+<!-- Build and sail boat&#45;&gt;Test2 -->
+<g id="edge6" class="edge">
+<title>Build and sail boat&#45;&gt;Test2</title>
+<path fill="none" stroke="black" d="M203.42,-285.74C208.94,-256.85 214.79,-226.22 218.84,-205.04"/>
+<polygon fill="black" stroke="black" points="222.28,-205.65 220.72,-195.17 215.41,-204.34 222.28,-205.65"/>
+</g>
+<!-- Create AI -->
+<g id="node5" class="node">
 <title>Create AI</title>
 <path fill="azure" stroke="black" stroke-width="2" d="M736,-665C736,-665 388,-665 388,-665 382,-665 376,-659 376,-653 376,-653 376,-497 376,-497 376,-491 382,-485 388,-485 388,-485 736,-485 736,-485 742,-485 748,-491 748,-497 748,-497 748,-653 748,-653 748,-659 742,-665 736,-665"/>
 <polygon fill="#a1ddb2" stroke="transparent" points="386,-644 386,-659 738,-659 738,-644 386,-644"/>
@@ -69,7 +93,7 @@
 <text text-anchor="start" x="386" y="-494.8" font-family="DejaVu Sans" font-size="14.00">⚠ Keep AI secret.</text>
 </g>
 <!-- Own AI internet -->
-<g id="node4" class="node">
+<g id="node6" class="node">
 <title>Own AI internet</title>
 <path fill="azure" stroke="black" stroke-width="2" d="M711.5,-423.5C711.5,-423.5 412.5,-423.5 412.5,-423.5 406.5,-423.5 400.5,-417.5 400.5,-411.5 400.5,-411.5 400.5,-323.5 400.5,-323.5 400.5,-317.5 406.5,-311.5 412.5,-311.5 412.5,-311.5 711.5,-311.5 711.5,-311.5 717.5,-311.5 723.5,-317.5 723.5,-323.5 723.5,-323.5 723.5,-411.5 723.5,-411.5 723.5,-417.5 717.5,-423.5 711.5,-423.5"/>
 <polygon fill="#f8ec99" stroke="transparent" points="411,-402.5 411,-417.5 714,-417.5 714,-402.5 411,-402.5"/>
@@ -87,7 +111,7 @@
 <polygon fill="black" stroke="black" points="565.5,-433.6 562,-423.6 558.5,-433.6 565.5,-433.6"/>
 </g>
 <!-- Secret AI Plan -->
-<g id="node5" class="node">
+<g id="node7" class="node">
 <title>Secret AI Plan</title>
 <path fill="azure" stroke="black" stroke-width="2" d="M726,-250C726,-250 398,-250 398,-250 392,-250 386,-244 386,-238 386,-238 386,-116 386,-116 386,-110 392,-104 398,-104 398,-104 726,-104 726,-104 732,-104 738,-110 738,-116 738,-116 738,-238 738,-238 738,-244 732,-250 726,-250"/>
 <polygon fill="#ff8080" stroke="transparent" points="396,-229 396,-244 728,-244 728,-229 396,-229"/>
@@ -107,7 +131,7 @@
 <polygon fill="black" stroke="black" points="565.5,-260.29 562,-250.29 558.5,-260.29 565.5,-260.29"/>
 </g>
 <!-- Own AI Fail -->
-<g id="node6" class="node">
+<g id="node8" class="node">
 <title>Own AI Fail</title>
 <path fill="azure" stroke="black" stroke-width="2" d="M725.5,-68C725.5,-68 398.5,-68 398.5,-68 392.5,-68 386.5,-62 386.5,-56 386.5,-56 386.5,-36 386.5,-36 386.5,-30 392.5,-24 398.5,-24 398.5,-24 725.5,-24 725.5,-24 731.5,-24 737.5,-30 737.5,-36 737.5,-36 737.5,-56 737.5,-56 737.5,-62 731.5,-68 725.5,-68"/>
 <text text-anchor="start" x="397" y="-50.8" font-family="DejaVu Sans" font-size="14.00">AI finds perfect plan but makes another person</text>
