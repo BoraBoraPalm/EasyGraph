@@ -7,11 +7,25 @@ class Graph:
     For creating a graph with nodes and clusters. Descriptions can be assigned to the nodes and clusters.
     """
 
+    # To be able to store and access global an instance of this class.
+    # Thus, possible to access and extend one Graph from each modul.
+    globals: dict = {}
+
     def __init__(self):
         self.clusters = {}
         self.nodes = {}
         self.dot = Digraph()
         self.node_previous_auto: str = None
+
+    def add_global(self, name:str):
+        """
+        To make object global available and accessible via a unique key.
+
+        :param name: The key under which the current Graph object can be accessed!
+        :return: Nothing
+        """
+
+        Graph.globals[name] = self
 
     def add_cluster(self, name:str=None, text:str="", supercluster:str=None):
         """
@@ -29,7 +43,7 @@ class Graph:
             self.clusters[name] = {"text": text, "supercluster": supercluster}
 
 
-    def add_node(self, name:str, *, connect_from:str="auto", text:str=None, cluster:str=None, title_colour:str="yellow"):
+    def add_node(self, name:str, *, connect_from:str|None="auto", text:str|None=None, cluster:str|None=None, title_colour:str="yellow"):
         """
         For defining and adding a new node to the graph.
 
@@ -74,10 +88,16 @@ class Graph:
                 if connect_from == "auto":
                     previous_node = self.node_previous_auto  # will be None the very first node
                     self.node_previous_auto = name           # to remember this node for next time
-                # b) Applies manual chaining, thus previous node is defined by user
+                # b) If no connection to previous is applied
+                elif connect_from is None:
+                    self.node_previous_auto = name
+                    previous_node = None
+
+                # c) Applies manual chaining, thus previous node is defined by user
                 else:
                     previous_node = connect_from
 
+                print(f"name: {name} => previous node: {self.node_previous_auto}")
                 # Finally, store the information of this node in the dict
                 self.nodes[name] = {"connect_from": previous_node,
                                     "cluster": cluster,
