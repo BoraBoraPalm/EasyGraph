@@ -1,4 +1,4 @@
-from directed_graph import Graph
+from ..directed_graph import Graph
 
 def some_function_2c():
     Graph.globals["global test"].add_cluster("2c module", supercluster="Overview")

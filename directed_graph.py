@@ -85,7 +85,13 @@ class Graph:
             self.clusters[name] = {"text": text, "supercluster": supercluster}
 
 
-    def add_node(self, name:str, *, connect_from:str|list[str]|None="auto", text:str|None=None, cluster:str|None=None, title_colour:str="yellow"):
+    def add_node(self,
+                 name:str, *,
+                 connect_from:str|list[str]|None="auto",
+                 text:str|None=None,
+                 cluster:str|None=None,
+                 title_colour:str="yellow",
+                 width:float=1):
         """
         For defining and adding a new node to the graph.
 
@@ -129,7 +135,7 @@ class Graph:
                     pattern = re.compile(r'[#=-]{4,}')
                     text = pattern.sub('', text)
                     # 2) Format the text for the node
-                    text = self._format_text(self._find_lines(text), title_colour=title_colour)
+                    text = self._format_text(self._find_lines(text), title_colour=title_colour, text_width=50*width)
 
                 # a) Applied automatic chaining, thus connecting to previous node if desired
                 if connect_from == "auto":
@@ -168,7 +174,8 @@ class Graph:
                                     "cluster": cluster,
                                     "text": text,
                                     "time_absolute": delta_time_absolute,
-                                    "time_relative": delta_time_relative}
+                                    "time_relative": delta_time_relative,
+                                    "width": width}
 
 
 
@@ -310,7 +317,7 @@ class Graph:
 
 
 
-    def _format_text(self, text, title_colour) -> str:
+    def _format_text(self, text:str, title_colour:str, text_width:float=50) -> str:
         """
         For HTML formating different string parts differently. Thuy, certain text blocks are extracted from the input string and are formatted accordingly:
 
@@ -369,7 +376,7 @@ class Graph:
 
             # 1) FORMATION FOR: STEP / TITLE ==========================================
             if raw.startswith("Step:"):
-                for part in textwrap.wrap(subst(raw), 50, break_long_words=True):
+                for part in textwrap.wrap(subst(raw), text_width, break_long_words=True):
                     rows.append(
                         f'<TR><TD BGCOLOR="{STEP_BG}" ALIGN="CENTER">'
                         f'<B>{part}</B></TD></TR>'
@@ -379,7 +386,7 @@ class Graph:
 
             # FORMATION FOR: DESCRIPTION ==============================================
             if raw.startswith("Description:"):
-                for part in textwrap.wrap(subst(raw), 50, break_long_words=True):
+                for part in textwrap.wrap(subst(raw), text_width, break_long_words=True):
                     rows.append(
                         f'<TR><TD ALIGN="LEFT"><I>{part}</I></TD></TR>'
                     )
@@ -391,7 +398,7 @@ class Graph:
             if line and line[0] in BULLETS:
                 bullet, rest = line[0], line[1:].lstrip()
                 # wrap at 48 chars, but only break on spaces
-                wrapped = textwrap.wrap(rest, 48, break_long_words=True)
+                wrapped = textwrap.wrap(rest, text_width-2, break_long_words=True)
 
                 # First line: bullet + single space + first chunk
                 rows.append(
@@ -406,7 +413,7 @@ class Graph:
                 continue
 
             # FORMATION FOR: PLAIN TEXT ===============================================
-            for part in textwrap.wrap(line, 50, break_long_words=True):
+            for part in textwrap.wrap(line, text_width, break_long_words=True):
                 rows.append(f'<TR><TD ALIGN="LEFT">{part}</TD></TR>')
 
         html = (

@@ -1,4 +1,5 @@
-from directed_graph import Graph
+from ..directed_graph import Graph
+
 
 g = Graph(measure_time=True)
 

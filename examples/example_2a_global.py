@@ -1,4 +1,4 @@
-from directed_graph import Graph
+from ..directed_graph import Graph
 from example_2b_global import some_function_2b
 from example_2c_global import some_function_2c
 
@@ -18,11 +18,12 @@ if __name__ == "__main__":
 
     time.sleep(1.5)
     some_function_2b()
+    time.sleep(0.3)
     some_function_2c()
 
     g.add_node(name="Completed", text="The final step is again in the main file for example.", cluster="2a module")
 
     g.create()
-    g.save("global_test")
+    g.save("EasyGraph/examples/global_test")
 
 
