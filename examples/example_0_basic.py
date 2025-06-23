@@ -9,11 +9,11 @@ if __name__ == "__main__":
 
     # A) One step is defined by a comment, and can be separated with more than three =,-, #
     #    in a row. It will be removed automatically inside the node.
-    text = """Step: First Step ==========================================================
+    text = """Step: First Step ==============================================================
     
     Description: This is the description of the first step.
     
-    [ ] An item to complete. Use this brackets and a white space.
+    [ ] An item to complete. Use brackets and a white space.
     [X] An completed item. Lower x or capital X can be used.
     Note: Use 'Note' If there is something special to consider. 
     """
@@ -31,9 +31,11 @@ if __name__ == "__main__":
 
     # Define another step by a comment. It is also possible to only use parts of the
     # step in terms of keywords: "Step", "Description", "[ ]", "[X]", "Note".
-    text = """ ==========================================================================
-    Description: We only use the 'Description' and 'Note' keyword here. Simple text without a keyword is also possible.
-    Note: Additionally, using 60% of normal width of node.
+    text = """ ============================================================================
+    Description: We only use the 'Description' and 'Note' keyword here. Simple text 
+    without a keyword is also possible.
+    
+        Note: Additionally, using 60% of normal width of node.
     """
     # To add the second node.
     g.add_node("The second step", text=text, width=0.6)
@@ -44,18 +46,17 @@ if __name__ == "__main__":
 
 
 
-    # Define the 3rd step without a comment. This might be useful for smalls steps or not yet implemented smaller steps
-    # somewhere in the code, maybe in other modules.
-    g.add_node(name="The third step", text="This step can be anywhere! No concrete idea yet, or just small step.", width=0.4)
+    # Define the 3rd step without a comment. This might be useful for smalls steps or not
+    # yet implemented smaller steps somewhere in the code, maybe in other modules.
+    g.add_node(name="The third step =====================================================",
+               text="This step can be anywhere! No concrete idea yet, or just "
+                    "small step.",
+               width=0.4)
 
 
+    # To create and save the graph (by default as svg)
     g.create()
     g.save("EasyGraph/examples/basic_test")
-
-    # Add
-
-
-    # Define
 
 
 

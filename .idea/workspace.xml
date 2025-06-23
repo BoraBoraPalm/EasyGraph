@@ -5,26 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e85e3e62-7e2f-4dbc-808b-d13841744f00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/example_0_basic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/example_3_nesting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/old/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README_OLD.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/advanced_simulation_workflow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/advanced_simulation_workflow.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/advanced_simulation_workflow_2.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/advanced_simulation_workflow_2.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/big_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/examples/big_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/directed_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/directed_graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_1_big.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_1_big.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_2a_global.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_2a_global.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_2b_global.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_2b_global.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_2c_global.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_2c_global.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/global_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/examples/global_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mri_pipeline_workflow_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/mri_pipeline_workflow_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nested_workflow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/nested_workflow.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/research_simulation_workflow.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/research_simulation_workflow.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple_auto_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/simple_auto_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/test.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/example_0_basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_0_basic.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
