@@ -13,7 +13,13 @@ class Graph:
     # Thus, possible to access and extend one Graph from each modul.
     globals: dict = {}
 
-    def __init__(self, measure_time:bool=False):
+    def __init__(self, measure_time:bool=False, levels:int=10):
+        """
+        * If measure_time=True, also the time passed will be measured for each node.
+        * The levels are defining the maximal depth of nesting for clusters. This defines
+          the darkening of the deeper clusters.
+
+        """
         self.clusters = {}
         self.nodes = {}
         self.dot = Digraph()
@@ -23,6 +29,11 @@ class Graph:
         if measure_time:
             self.time_start = time.time()
         self.time_node_previous = None
+
+        if levels < 2:
+            print(f"Error: Maximum level depth need to me minimum 2! But you have chosen {levels}")
+        else:
+            self.levels = levels
 
     def _format_delta(self, delta_seconds: float) -> str:
         """
@@ -271,7 +282,7 @@ class Graph:
         # 3) To build the nesting from the bottom up
         for name in sorted(self.clusters, key=depth, reverse=True):
             sup = self.clusters[name]["supercluster"]
-            ratio, level_colour = lavender_darkness(level=depth(name) + 1, levels=10)
+            ratio, level_colour = lavender_darkness(level=depth(name) + 1, levels=self.levels)
 
             # Switch from gray text colout to white to be visible in deeper nested cluster
             font_colour = "#EEEEEE" if ratio >= 0.2 else "grey"
@@ -317,7 +328,7 @@ class Graph:
 
 
 
-    def _format_text(self, text:str, title_colour:str, text_width:float=50) -> str:
+    def _format_text(self, text:str, title_colour:str, text_width:int=50) -> str:
         """
         For HTML formating different string parts differently. Thuy, certain text blocks are extracted from the input string and are formatted accordingly:
 
@@ -357,11 +368,11 @@ class Graph:
 
             return (
                 s.replace('&', '&amp;')  # to be able to use & in HTML formation as text (otherwise master escape)
-                .replace('<', '&lt;') # to be able to use < in HTML formation as text
-                .replace('>', '&gt;') # to be able to use > in HTML formation as text
+                .replace('<', '&lt;')    # to be able to use < in HTML formation as text
+                .replace('>', '&gt;')    # to be able to use > in HTML formation as text
                 .replace("[ ]", "☐")
-                .replace("[X]", "☑") # for not being case-sensitive
-                .replace("[x]", "☑") #
+                .replace("[X]", "☑")     # for not being case-sensitive
+                .replace("[x]", "☑")     #
                 .replace("Note:", "⚠")
             )
 
@@ -437,7 +448,7 @@ class Graph:
                 if ln.strip()]          # drop blank lines
 
 
-    def save(self, name, format='svg'):
+    def save(self, name, format:str='svg'):
         """
         For saving the graph which is created as image.
 
@@ -445,387 +456,4 @@ class Graph:
         :return: Nothing
         """
         self.dot.render(name, format=format, cleanup=True)
-
-
-if __name__ == "__main__":
-
-# TEST 1 (START)
-    g = Graph()
-    text = """Step: Acquire signals
-    Description: Collect raw patient-monitoring data from devices.
-        [X] ECG leads attached
-        [X] Pulse oximeter streaming
-        [X] Device clocks synced
-    Note: Keep sampling rates uniform (e.g., 500 Hz ECG, 100 Hz SpO₂).
-    Note: Record device IDs and firmware.
-    """
-    g.add_node(name="Acquire signals", text=text, title_colour="green")
-
-    text = "This part cleans signals (band-pass, 50 Hz removal, short SpO₂ interpolation), extracts and normalizes HRV from R-peaks, then trains a decision-tree with 5-fold cross-validation."
-    g.add_cluster(name="Signal Preprocessing Cluster", text=text, supercluster=None)
-
-    text = """Step: Clean signals
-    Description: Remove noise and fix any missing samples.
-        [ ] Apply band-pass filter
-        [X] Remove mains interference (50 Hz)
-        [ ] Fill short gaps in SpO₂
-    Note: For gaps <200 ms, use spline interpolation.
-    Note: Check that filtering doesn’t distort ECG peaks.
-    """
-    g.add_node(name="Clean signals", text=text, title_colour="yellow", cluster="Signal Preprocessing Cluster")
-
-
-    text = """Step: Get features and train
-    Description: Extract key metrics and build a simple model.
-        [ ] Detect R-peaks in ECG
-        [X] Calculate heart-rate variability
-        [ ] Try a basic classifier, first use a decision tree.
-    Note: Normalize each patient’s HRV results.
-    Note: Use 5-fold cross-validation.
-    """
-    g.add_node(name="Get features and train", text=text, title_colour="yellow", cluster="Signal Preprocessing Cluster")
-
-
-    text = """Step: Test and integrate
-    Description: Check performance and prepare for deployment.
-        [ ] Plot ROC on test data
-        [ ] Set decision thresholds
-        [ ] Draft deployment guide
-    Note: Aim for ≥95 % sensitivity and ≥90 % specificity.
-    Note: Package code for real-time C++ use.
-    """
-    g.add_node(name="Test and integrate", text=text, title_colour="red")
-
-
-    g.create()
-    g.save("simple_auto_test")
-# TEST 1 (END)
-
-# TEST 2 (START)
-
-    text = """Step: Preparing the data
-
-    Description: Right formation of the data and also remove NaN data.
-
-        [ ] Real data is used
-        [X] Placeholder data
-        [X] Something is missing here
-        Note: Only placeholder values for T2. Using at the moment T2* instead of T2 (!) Need also for each metabolite map?
-        Note: Finally need to combine T2 and T2*
-    """
-
-    text2 = """Step: Some dummy step
-
-    Description: To do something which is really cool, but nobody anderstands how cool this is. Really, beliefe me!
-
-        [ ] Real data / computation is used
-        [X] Placeholder data / computation is used
-        [X] Something is missing here
-    """
-
-    text3 = """Step: Haha
-
-    Description: This is very funny. It is so funny that even my dog laughs. For sure here are some spelling issues. But still, look, my dog laughs so hard!
-
-    """
-
-
-
-    g = Graph()
-    g.add_cluster(name="cluster 1",
-                  text="Das ist Cluster 1, und dieses ist zuständig für ganz viele Dinge. Dinge, von denen wir nichts wissen wollen!")
-    g.add_cluster(name="cluster 2",
-                  text="Das ist Cluster 1, und dieses ist zuständig für ganz viele Dinge. Dinge, von denen wir nichts wissen wollen!")
-    g.add_cluster(name="cluster 2", text="Das ist ein weiteres lustiges Cluster. Lalalalala!", supercluster="cluster 1")
-    g.add_cluster(name="cluster 3", text="Lalalalala!", supercluster="cluster 2")
-    g.add_cluster(name="cluster 4", text="Lalalalala!", supercluster="cluster 3")
-    g.add_cluster(name="cluster 5", text="Lalalalala!", supercluster="cluster 1")
-    g.add_cluster(name="cluster 6", text="Lalalalala!", supercluster="cluster 4")
-    g.add_cluster(name="cluster 7", text="Lalalalala!", supercluster="cluster 6")
-
-    g.add_node(name="node 1", text=text, cluster="cluster 1")
-    g.add_node(name="node 2", text="Bindeglied, das 3te Rad!", connect_from="node 1", cluster="cluster 2")
-    g.add_node(name="node 3", text=text2, connect_from="node 2", cluster="cluster 1")
-    g.add_node(name="node 4", text=text3, connect_from="node 2")
-    g.add_node(name="node 5", text="Alles ist so lustig, ich weiß garnicht wo hin mit meiner Lustigkeit! ", connect_from="node 10")
-    g.add_node(name="node 6", text=text2, connect_from="node 2", cluster="cluster 3")
-    g.add_node(name="node 7", text=text2, connect_from="node 2", cluster="cluster 4")
-    g.add_node(name="node 0", text="test", cluster="cluster 5")
-
-    g.add_node(name="node 8", text="test", connect_from="node 0", cluster="cluster 6")
-    g.add_node(name="node 9", text="test", connect_from="node 8", cluster="cluster 6")
-    g.add_node(name="node 10", text="test", connect_from="node 9", cluster="cluster 7")
-
-    #####g.add_node(name="node 1", text="lala 1", cluster="cluster 1")
-    #####g.add_node(name="node 2", text="lala 2")
-    #####g.add_node(name="node 3", text="lala 3", cluster="cluster 1")
-    #####g.add_node(name="node 4", text="lala 4", cluster="cluster X")
-    #####
-    #####g.add_node(name="node 5", text="lala 5", cluster="cluster 2")
-
-    g.create()
-    g.save("test")
-
-# TEST 2 (END)
-
-# TEST 3 (START)
-
-    g = Graph()
-
-    # Clusters represent major pipeline stages
-    g.add_cluster(name="Acquisition", text="Raw multi-echo MRI data collection (GRE, SE, DWI)")
-    g.add_cluster(name="Preprocessing", text="Corrections and artifact removal", supercluster="Acquisition")
-    g.add_cluster(name="Quantitative Mapping", text="Compute T1, T2*, ADC maps", supercluster="Preprocessing")
-    g.add_cluster(name="Segmentation", text="Tissue and lesion delineation", supercluster="Quantitative Mapping")
-    g.add_cluster(name="FeatureExtraction", text="Extract volumes and shape metrics", supercluster="Segmentation")
-    g.add_cluster(name="Classification", text="Machine-learning disease prediction", supercluster="FeatureExtraction")
-    g.add_cluster(name="Visualization", text="3D renderings and reports", supercluster="Classification")
-
-    # Nodes capture detailed tasks and flags
-    text1 = "Step: Data Acquisition\n" \
-            "Description: Collect multi-echo GRE, SE, and DWI sequences.\n" \
-            "    [X] GRE sequence acquired\n" \
-            "    [ ] DWI b-values defined\n" \
-            "    [ ] Confirm coil sensitivity maps"
-
-    text2 = "Step: Preprocessing\n" \
-            "Description: Correct for motion, bias, and noise.\n" \
-            "    [ ] Motion correction applied\n" \
-            "    [X] N4 bias-field correction\n" \
-            "    [X] Denoising via non-local means"
-
-    text3 = "Step: T2* Mapping\n" \
-            "Description: Fit exponential decay to multi-echo data.\n" \
-            "    [X] ROI mask defined\n" \
-            "    [X] SNR thresholding applied\n" \
-            "    [ ] Outlier echoes excluded"
-
-    text4 = "Step: Segmentation\n" \
-            "Description: Delineate gray matter, white matter, lesions.\n" \
-            "    [ ] U-net model loaded\n" \
-            "    [X] Training placeholders used\n" \
-            "    [ ] Post-processing cleanup"
-
-    text5 = "Step: Classification\n" \
-            "Description: Predict pathology from extracted features.\n" \
-            "    [ ] Features normalized per subject\n" \
-            "    [X] Random forest classifier\n" \
-            "    [ ] 10-fold cross-validation"
-
-    # Add nodes and link workflow edges
-    g.add_node(name="node_acq", text=text1, cluster="Acquisition")
-    g.add_node(name="node_pre", text=text2, connect_from="node_acq", cluster="Preprocessing")
-    g.add_node(name="node_map", text=text3, connect_from="node_pre", cluster="Quantitative Mapping")
-    g.add_node(name="node_seg", text=text4, connect_from="node_map", cluster="Segmentation")
-    g.add_node(name="node_feat", text="Step: Feature Extraction\nDescription: Compute volumes, shapes and textures.", connect_from="node_seg", cluster="FeatureExtraction")
-    g.add_node(name="node_cls", text=text5, connect_from="node_feat", cluster="Classification")
-    g.add_node(name="node_vis", text="Step: Visualization\nDescription: Generate 3D renders and summary report.", connect_from="node_cls", cluster="Visualization")
-
-    # Finalize and save the graph
-    g.create()
-    g.save("mri_pipeline_workflow_test")
-
-# TEST 3 (END)
-
-# TEST 4 (START)
-
-    g = Graph()
-
-    # === Requirements & Planning ===
-    g.add_cluster(
-        name="Requirements & Planning",
-        text="Define scope, user stories, and technical specifications"
-    )
-    g.add_node(
-        name="Gather User Stories",
-        text="""Step: User Stories
-        Description: Interview research team & clinicians
-            [X] Initial interviews done
-            [X] Consolidate feedback
-            [X] Prioritize features
-        Note: All user requirements captured.""",
-        cluster="Requirements & Planning",
-        title_colour="green"
-    )
-    g.add_node(
-        name="Draft Technical Spec",
-        connect_from="Gather User Stories",
-        text="""Step: Tech Spec
-        Description: Document APIs, data models, simulation requirements
-            [X] Define data schema
-            [X] Specify performance targets
-            [X] Outline error-handling
-        Note: Spec ready for review.""",
-        cluster="Requirements & Planning",
-        title_colour="green"
-    )
-
-    # === Architecture Design ===
-    g.add_cluster(
-        name="Architecture Design",
-        text="High-level modules and interactions"
-    )
-    g.add_node(
-        name="Define Modules",
-        connect_from="Draft Technical Spec",
-        text="""Step: Modules
-        Description: Decompose into Core, I/O, Utils, UI
-            [X] Core engine defined
-            [ ] I/O interfaces outlined
-            [ ] Visualization draft
-        Note: Pending I/O and UI details.""",
-        cluster="Architecture Design",
-        title_colour="yellow"
-    )
-    g.add_node(
-        name="Select Technology Stack",
-        text="""Step: Tech Stack
-        Description: Choose languages, frameworks, tools
-            [ ] Python core
-            [ ] C++ extensions
-            [ ] Qt or web UI
-        Note: Finalize stack by next sprint.""",
-        cluster="Architecture Design",
-        title_colour="red"
-    )
-
-    # === Implementation ===
-    g.add_cluster(
-        name="Implementation",
-        text="Write, integrate, and test code modules"
-    )
-    g.add_cluster(name="Core Module", supercluster="Implementation")
-    g.add_node(
-        name="Core Development",
-        connect_from="Select Technology Stack",
-        text="""Step: Core Dev
-        Description: Implement simulation loop, data structures
-            [ ] Loop skeleton
-            [ ] State management
-            [ ] Configuration parsing
-        Note: Use abstract classes.""",
-        cluster="Core Module",
-        title_colour="red"
-    )
-    g.add_node(
-        name="Core Testing",
-        connect_from="Core Development",
-        text="""Step: Core Tests
-        Description: Unit tests for core components
-            [X] Scheduler tests
-            [X] Data integrity tests
-            [X] Config load tests
-        Note: Core test suite passing.""",
-        cluster="Core Module",
-        title_colour="green"
-    )
-    g.add_cluster(name="I/O Module", supercluster="Implementation")
-    g.add_node(
-        name="I/O Handlers",
-        connect_from="Core Testing",
-        text="""Step: I/O
-            [ ] CSV reader
-            [ ] HDF5 checkpoint
-            [X] JSON config parser
-        Note: Complete JSON support.""",
-        cluster="I/O Module",
-        title_colour="yellow"
-    )
-    g.add_node(
-        name="I/O Validation",
-        connect_from="I/O Handlers",
-        text="""Task: Validate I/O
-            [ ] Roundtrip tests
-            [ ] Performance benchmark
-        Note: Ensure throughput > 100 MB/s.""",
-        cluster="I/O Module",
-        title_colour="red"
-    )
-
-    # === Simulation Pipeline ===
-    g.add_cluster(
-        name="Simulation Pipeline",
-        text="Configure and run batch simulations"
-    )
-    g.add_cluster(name="Model Config", supercluster="Simulation Pipeline")
-    g.add_node(
-        name="Parameter Setup",
-        connect_from="I/O Validation",
-        text="""Step: Param Setup
-        Description: Define Monte Carlo parameters
-            [ ] Temperature range
-            [ ] Time-step stability
-            [ ] Random seed control
-        Note: Use Latin Hypercube sampling.""",
-        cluster="Model Config",
-        title_colour="red"
-    )
-    g.add_node(
-        name="Parameter Verification",
-        connect_from="Parameter Setup",
-        text="""Task: Verify Params
-            [ ] Value bounds
-            [ ] Convergence checks
-        Note: Validate parameter combinations.""",
-        cluster="Model Config",
-        title_colour="red"
-    )
-    g.add_cluster(name="Execution Engine", supercluster="Simulation Pipeline")
-    g.add_node(
-        name="Batch Execution",
-        connect_from="Parameter Verification",
-        text="""Step: Execute
-        Description: Submit jobs to HPC cluster
-            [X] SLURM scripts ready
-            [X] Job arrays configured
-            [ ] Fault-tolerance logic
-        Note: Checkpoint every 100 steps.""",
-        cluster="Execution Engine",
-        title_colour="yellow"
-    )
-    g.add_node(
-        name="Job Monitoring",
-        connect_from="Batch Execution",
-        text="""Task: Monitor
-            [ ] Real-time logs
-            [X] Alert on failure
-        Note: Integrate with Slack API.""",
-        cluster="Execution Engine",
-        title_colour="yellow"
-    )
-
-    # === Post-Processing ===
-    g.add_cluster(
-        name="Post-Processing",
-        text="Analyze results and generate reports"
-    )
-    g.add_node(
-        name="Data Aggregation",
-        connect_from="Job Monitoring",
-        text="""Step: Aggregate
-        Description: Merge output files
-            [X] HDF5 merge
-            [ ] CSV export
-            [ ] Metadata logging
-        Note: Automate directory discovery.""",
-        cluster="Post-Processing",
-        title_colour="yellow"
-    )
-    g.add_node(
-        name="Result Visualization",
-        connect_from="Data Aggregation",
-        text="""Step: Visualize
-            [ ] Time-series plots
-            [ ] Heatmaps
-            [X] Summary charts
-        Note: Use matplotlib and Plotly.""",
-        cluster="Post-Processing",
-        title_colour="yellow"
-    )
-
-    # Build graph and save
-    g.create()
-    g.save("advanced_simulation_workflow_2")
-
-# TEST 4 (END)
 

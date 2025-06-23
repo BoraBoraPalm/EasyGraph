@@ -12,9 +12,6 @@
 EasyGraph lets you turn the "to-do" notes you already write in code into clear, directed graphs.
 Just embed a structured, triple-quoted comment beside each task — or even use only the keywords you need for a quick, lightweight note — and EasyGraph converts it into a visual workflow that scales from tiny helpers to large, multi-module projects. The result is an at-a-glance project map that is ideal for tracking progress. EasyGraph might also help present the project to others and give a clear visual overview.
 
-
----
-
 ---
 
 ## Features
