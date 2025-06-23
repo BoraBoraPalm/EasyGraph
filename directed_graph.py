@@ -1,5 +1,6 @@
 from graphviz import Digraph
 import textwrap
+import time
 import re
 
 
@@ -12,11 +13,51 @@ class Graph:
     # Thus, possible to access and extend one Graph from each modul.
     globals: dict = {}
 
-    def __init__(self):
+    def __init__(self, measure_time:bool=False):
         self.clusters = {}
         self.nodes = {}
         self.dot = Digraph()
         self.node_previous_auto: str = None
+
+        self.measure_time = measure_time
+        if measure_time:
+            self.time_start = time.time()
+        self.time_node_previous = None
+
+    def _format_delta(self, delta_seconds: float) -> str:
+        """
+        Format a time interval in seconds into the most appropriate unit:
+        ns, μs, ms, s, min, or h.
+        """
+        # nanoseconds
+        if delta_seconds < 1e-6:
+            value = delta_seconds * 1e9
+            unit = "ns"
+        # microseconds
+        elif delta_seconds < 1e-3:
+            value = delta_seconds * 1e6
+            unit = "μs"
+        # milliseconds
+        elif delta_seconds < 1.0:
+            value = delta_seconds * 1e3
+            unit = "ms"
+        # seconds
+        elif delta_seconds < 60.0:
+            value = delta_seconds
+            unit = "s"
+        # minutes
+        elif delta_seconds < 3600.0:
+            value = delta_seconds / 60.0
+            unit = "min"
+        # hours (and beyond)
+        else:
+            value = delta_seconds / 3600.0
+            unit = "h"
+
+        # Format with up to three significant digits
+        fmt = f"{value:.3g} {unit}"
+        return fmt
+
 
     def add_global(self, name:str):
         """
@@ -104,10 +145,30 @@ class Graph:
                     previous_node = connect_from
                     self.node_previous_auto = name
 
+                # d) Measure time if defined at beginning
+                if self.measure_time:
+                    delta_seconds = time.time() - self.time_start
+                    delta_time_absolute = self._format_delta(delta_seconds=delta_seconds)
+
+                    if self.time_node_previous is None:
+                        delta_seconds = time.time() - self.time_start
+                        self.time_node_previous = time.time()
+                    else:
+                        delta_seconds = time.time() - self.time_node_previous
+                        self.time_node_previous = time.time()
+
+                    delta_time_relative = self._format_delta(delta_seconds=delta_seconds)
+
+
+                else:
+                    delta_time_absolute, delta_time_relative = None, None
+
                 # Finally, store the information of this node in the dict
                 self.nodes[name] = {"connect_from": previous_node,
                                     "cluster": cluster,
-                                    "text": text}
+                                    "text": text,
+                                    "time_absolute": delta_time_absolute,
+                                    "time_relative": delta_time_relative}
 
 
 
@@ -236,10 +297,16 @@ class Graph:
             # a) If multiple previous nodes are existing, thus list of strings
             if isinstance(val["connect_from"], list):
                 for edge in val["connect_from"]:
-                    self.dot.edge(edge, n)
+                    if val["time_absolute"] is not None and val["time_relative"] is not None:
+                        self.dot.edge(edge, n, label=f"Δt={val['time_relative']}\n       ({val['time_absolute']})", fontname='DejaVu Sans', fontsize='10')
+                    else:
+                        self.dot.edge(edge, n)
             # b) If only string is available, thus on previous node
             elif val["connect_from"]:
-                self.dot.edge(val["connect_from"], n)
+                if val["time_absolute"] is not None and val["time_relative"] is not None:
+                    self.dot.edge(val["connect_from"], n, label=f"Δt={val['time_relative']}\n       ({val['time_absolute']})", fontname='DejaVu Sans', fontsize='10')
+                else:
+                    self.dot.edge(val["connect_from"], n)
 
 
 

@@ -1,6 +1,6 @@
 from directed_graph import Graph
 
-g = Graph()
+g = Graph(measure_time=True)
 
 
 text = """Step: Create own AI ########################################################################
@@ -133,7 +133,7 @@ g.add_node(name="Be rich", text=text, cluster="Nice island adventure")
 text = "Waking up ####################################################################################"
 g.add_node(name="Wake up", text=text)
 ##################################
-# Final code                     #
+# Final code?                    #
 ##################################
 
 
@@ -152,14 +152,15 @@ Description: Live the life.
     [X] Sleep soft
     [X] Earn money
 """
-g.add_node(name="Life", text=text, title_colour="green")
+g.add_cluster(name="The real life")
+g.add_node(name="Life", text=text, title_colour="green", cluster="The real life")
 
 text = """Step: Die young
-
+    [X] Write a boring autobiographical book.
     [ ] Apply to heaven.
-    Note: Choose right planet
+    Note: Be aware to choose the right planet.
 """
-g.add_node(name="Paradise", text=text, title_colour="red")
+g.add_node(name="Paradise", text=text, title_colour="yellow", cluster="The real life")
 
 text = """Step: Locate
 
@@ -167,7 +168,8 @@ Description: One question arises: 'Where the hell am I?'
 
     [ ] Ask for current location
 """
-g.add_cluster(name="Heaven or whatever", text="Living in a simulation, thus Simulation Theory applies.")
+g.add_cluster(name="Simulation", text="Living in a simulation, thus Simulation Theory applies.")
+g.add_cluster(name="Heaven or whatever", text="A palace made of sweet clouds, perhaps cotton candy.", supercluster="Simulation")
 g.add_node(name="Locate", text=text, cluster="Heaven or whatever", title_colour="red")
 ##################################
 # Area for some code             #
@@ -176,12 +178,69 @@ g.add_node(name="Locate", text=text, cluster="Heaven or whatever", title_colour=
 
 
 g.add_node(name="Fail", cluster="Heaven or whatever")
+##################################
+# Area for some code to fail on  #
+# purpose                        #
+##################################
 
 g.add_node(name="Hacking plan", text="[ ] Make plan to hack heaven's master code.", cluster="Heaven or whatever")
+##################################
+# Area for some AI that makes    #
+# nice code that works but is    #
+# unnecessarily bloated          #
+##################################
+
 g.add_node(name="Cheating", text="[ ] Add more lives to your own entity \n Note: Don't get caught!", cluster="Heaven or whatever")
+##################################
+# Area for some heavy and        #
+# most wonderful code            #
+##################################
+
+
+
+text = """Step: Gather experience
+
+Description: Learning the basics of Reinforcement and applying them in real life.
+
+    [ ] Living multiple lives
+    [ ] Speeding up the lives
+Note: Enormous computing power and time are required!
+"""
+g.add_cluster(name="Reinforcement learning", supercluster="Simulation")
+g.add_node(name="Living many lives", text=text, cluster="Reinforcement learning", title_colour="red")
+##################################
+# Area for some code             #
+#                                #
+##################################
+
+
+g.add_node(name="Missing", text="Note: Is a step missing here?", cluster="Reinforcement learning", title_colour="red")
+g.add_node(name="Selection", text="Choose best life.", connect_from=["Secret AI Plan", "Missing"], cluster="Reinforcement learning")
+##################################
+# Area for some code             #
+#                                #
+##################################
+
+
+text = """Step: Get enlightenment
+
+Description: To turn on light. Description: To turn on the light. Perhaps switch from an incandescent bulb to an LED, which is whiter and appears therefore more sacred.
+
+    [X] Discover programming language that works always and in any case.
+    [ ] Choose 42 as favourite number!
+"""
+g.add_node(name="Done", text=text, cluster="The real life")
+##################################
+# Area for some code             #
+#                                #
+##################################
+
+#g.add_node(name="Waking up lol", text="Waking up. Again? lol")
+
+
 
 g.create()
-g.save(name="lalalalalala")
+g.save(name="big_test")
 
 
 
