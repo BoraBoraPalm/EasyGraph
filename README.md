@@ -189,6 +189,12 @@ def some_function_2c():
 <img src="examples/global_test.svg" width="50%">
 
 ---
+### A bigger example graph
+You can find the code in the examples folder in the file `example_1_big.py`.
+
+<img src="examples/big_test.svg">
+
+---
 
 ## License
 
