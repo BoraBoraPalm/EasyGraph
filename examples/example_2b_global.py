@@ -1,4 +1,4 @@
-from ..directed_graph import Graph
+from easygraph import Graph
 
 def some_function_2b():
     Graph.globals["global test"].add_cluster("2b module", supercluster="Overview")

@@ -1,4 +1,4 @@
-from ..directed_graph import Graph
+from easygraph import Graph
 from .example_2b_global import some_function_2b
 from .example_2c_global import some_function_2c
 

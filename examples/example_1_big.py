@@ -1,4 +1,4 @@
-from ..directed_graph import Graph
+from easygraph import Graph
 
 
 g = Graph(measure_time=True)

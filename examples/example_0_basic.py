@@ -1,4 +1,4 @@
-from ..directed_graph import Graph
+from easygraph import Graph
 from types import SimpleNamespace
 
 if __name__ == "__main__":
