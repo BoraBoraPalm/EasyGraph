@@ -1,7 +1,7 @@
 # EasyGraph
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Python 3.6–3.11](https://img.shields.io/badge/python-3.6%E2%80%933.11-blue)](#requirements)
+[![Python >= 3.10](https://img.shields.io/badge/python-%3E%3D3.10-blue)](#requirements)
 
 **EasyGraph** turns plain Python into beautiful, self‑documenting Graphviz diagrams.
 
@@ -26,6 +26,9 @@ Just embed a structured, triple-quoted comment beside each task — or even use 
 
 ## Installation
 
+> ⚠️ **Note:** Git is required for installation. If you don’t already have it, follow the instructions at [Git Guides – Install Git](https://github.com/git-guides/install-git).
+
+
 ```bash
 pip install git+https://github.com/BoraBoraPalm/easygraph.git
 ```
@@ -37,9 +40,6 @@ git clone https://github.com/BoraBoraPalm/easygraph.git
 cd easygraph
 pip install -e .
 ```
-
-System package: `sudo apt install graphviz` (Linux) or the Windows installer from
-[graphviz.org](https://graphviz.org/).
 
 ---
 
@@ -193,9 +193,3 @@ def some_function_2c():
 You can find the code in the examples folder in the file `example_1_big.py`.
 
 <img src="examples/big_test.svg">
-
----
-
-## License
-
-MIT
