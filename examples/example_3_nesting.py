@@ -17,7 +17,7 @@ if __name__ == "__main__":
     g.add_node(name="1st Node", cluster="Cluster 10")
     g.add_node(name="2nd Node", cluster="Cluster 1")
     g.add_node(name="3rd Node", cluster=None)
-    g.add_node(name="4rd Node", cluster="Cluster 6")
+    g.add_node(name="4th Node", cluster="Cluster 6")
 
 
     g.create()
