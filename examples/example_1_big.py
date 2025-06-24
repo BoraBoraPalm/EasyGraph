@@ -225,7 +225,7 @@ g.add_node(name="Selection", text="Choose best life.", connect_from=["Secret AI 
 
 text = """Step: Get enlightenment
 
-Description: To turn on light. Description: To turn on the light. Perhaps switch from an incandescent bulb to an LED, which is whiter and appears therefore more sacred.
+Description: To turn on light. Perhaps switch from an incandescent bulb to an LED, which is whiter and appears therefore more sacred.
 
     [X] Discover programming language that works always and in any case.
     [ ] Choose 42 as favourite number!
@@ -241,7 +241,7 @@ g.add_node(name="Done", text=text, cluster="The real life")
 
 
 g.create()
-g.save(name="big_test")
+g.save(name="EasyGraph/examples/big_test")
 
 
 
