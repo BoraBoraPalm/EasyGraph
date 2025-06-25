@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # To create and save the graph (by default as svg)
     g.create()
-    g.save("EasyGraph/examples/basic_test")
+    g.save("old/examples/basic_test")
 
 
 

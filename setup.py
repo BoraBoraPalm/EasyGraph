@@ -6,9 +6,9 @@ long_description = (here / "README.md").read_text(encoding="utf-8") if (here / "
 
 setup(
     name="easygraph",
-    version="0.1.0",
+    version="0.2.0",
     author="Markus Schuster",
-    description="EasyGraph: pretty Graphviz Digraphs with clusters and formatted nodes",
+    description="old: pretty Graphviz Digraphs with clusters and formatted nodes",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/BoraBoraPalm/EasyGraph",

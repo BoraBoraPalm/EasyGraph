@@ -241,7 +241,7 @@ g.add_node(name="Done", text=text, cluster="The real life")
 
 
 g.create()
-g.save(name="EasyGraph/examples/big_test")
+g.save(name="old/examples/big_test")
 
 
 

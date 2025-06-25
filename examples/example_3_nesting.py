@@ -21,4 +21,4 @@ if __name__ == "__main__":
 
 
     g.create()
-    g.save("EasyGraph/examples/nesting_test")
+    g.save("old/examples/nesting_test")

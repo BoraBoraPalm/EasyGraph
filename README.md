@@ -193,3 +193,45 @@ def some_function_2c():
 You can find the code in the examples folder in the file `example_1_big.py`.
 
 <img src="examples/big_test.svg">
+
+---
+### Symbols and line breaks in comments
+
+```python
+from easygraph import Graph
+
+g = Graph()
+
+text = """ ------------------------------------------------------------------
+Step: One lonely step
+           
+Description: ´This description is too long, so I want to break the line here
+              in the comment-string and add the following line after the  
+              line break without a new line in the node. 
+              Additionally, the extra whitespaces should also not appear in 
+              the final node.´
+                          
+    [X] Creating this nice node!
+    [X] Enjoying the wonderful day
+    Note: Lala
+"""
+g.add_node(name="Nice node", text=text, title_colour="green", width=1.04)
+
+text = """ -------------------------------------------------------------------
+´Description: Therefore, use (1) two 'acute accents', (2) put text inside, and 
+              (3) enjoy a nice formatted comment-string, but also get a super 
+              cool node description in your graph!´
+         
+       ´Note: The new version (v. 0.2.0) also supports to create enumerations 
+              with ( 1 ), ( 2 ), ... ( 20 ). It is possible up to number 20. 
+              Just use as described but without spaces. Further, also letters 
+              are supported: (x), (y), (Y), (a), (b), (B), and so on...´ 
+"""
+
+
+# To finally create the graph and to save it as svg
+g.create()
+g.save("EasyGraph/examples/formatting_test")
+```
+
+<img src="examples/formatting_test.svg" width="50%">
