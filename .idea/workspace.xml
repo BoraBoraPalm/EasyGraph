@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e85e3e62-7e2f-4dbc-808b-d13841744f00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/examples/example_4_text_formatting.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyGraph/examples/basic_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/examples/basic_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyGraph/examples/big_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/examples/big_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyGraph/examples/global_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/examples/global_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EasyGraph/examples/nesting_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/old/examples/nesting_test.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easygraph/directed_graph.py" beforeDir="false" afterPath="$PROJECT_DIR$/easygraph/directed_graph.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/example_0_basic.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_0_basic.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/example_1_big.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_1_big.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/example_3_nesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/example_3_nesting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/formatting_test.svg" beforeDir="false" afterPath="$PROJECT_DIR$/examples/formatting_test.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

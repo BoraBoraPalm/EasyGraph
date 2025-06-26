@@ -127,14 +127,14 @@ class Graph:
             # Only digits?
             if inner.isdigit():
                 return circled_numbers.get(inner, m.group(0))
-            # Only letters?
-            if inner.isalpha():
-                ch = inner[-1]  # only the last letter counts
+            # Only a single letter
+            if inner.isalpha() and len(inner) == 1:
+                ch = inner  # exactly one char now
                 if ch.isupper():
                     return circled_upper.get(ch, m.group(0))
                 else:
                     return circled_lower.get(ch, m.group(0))
-            # Everything else: leave unchanged
+            # Everything else (including "XX", "a1", etc.): leave unchanged
             return m.group(0)
 
         # Substitute and return the modified text

@@ -29,17 +29,17 @@
 <!-- Another nice node -->
 <g id="node2" class="node">
 <title>Another nice node</title>
-<path fill="azure" stroke="black" stroke-width="2" d="M375.5,-180C375.5,-180 16.5,-180 16.5,-180 10.5,-180 4.5,-174 4.5,-168 4.5,-168 4.5,-12 4.5,-12 4.5,-6 10.5,0 16.5,0 16.5,0 375.5,0 375.5,0 381.5,0 387.5,-6 387.5,-12 387.5,-12 387.5,-168 387.5,-168 387.5,-174 381.5,-180 375.5,-180"/>
-<text text-anchor="start" x="15" y="-163.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">Description: Therefore, use ① two &#39;acute accent&#39;, ②</text>
-<text text-anchor="start" x="15" y="-146.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">put text inside and ③ enjoy a nice formatted</text>
-<text text-anchor="start" x="15" y="-129.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">comment&#45;string, but also to get a super cool node</text>
-<text text-anchor="start" x="15" y="-112.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">description in your graph!</text>
-<text text-anchor="start" x="15" y="-94.8" font-family="DejaVu Sans" font-size="14.00"> </text>
-<text text-anchor="start" x="15" y="-77.8" font-family="DejaVu Sans" font-size="14.00">⚠ The new version (v. 0.2.0) also supports to create</text>
-<text text-anchor="start" x="15" y="-60.8" font-family="DejaVu Sans" font-size="14.00">​    enumerations with ( 1 ), ( 2 ), ... ( 20 ). It is</text>
-<text text-anchor="start" x="15" y="-43.8" font-family="DejaVu Sans" font-size="14.00">​    possible up to number 20. Just use as described</text>
-<text text-anchor="start" x="15" y="-26.8" font-family="DejaVu Sans" font-size="14.00">​    but without spaces. Further, also letters are</text>
-<text text-anchor="start" x="15" y="-9.8" font-family="DejaVu Sans" font-size="14.00">​    supported: ⓧ, ⓨ, Ⓨ, ⓐ, ⓑ, Ⓑ, and so on...</text>
+<path fill="azure" stroke="black" stroke-width="2" d="M378.5,-180C378.5,-180 13.5,-180 13.5,-180 7.5,-180 1.5,-174 1.5,-168 1.5,-168 1.5,-12 1.5,-12 1.5,-6 7.5,0 13.5,0 13.5,0 378.5,0 378.5,0 384.5,0 390.5,-6 390.5,-12 390.5,-12 390.5,-168 390.5,-168 390.5,-174 384.5,-180 378.5,-180"/>
+<text text-anchor="start" x="12" y="-163.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">Description: Therefore, use ① two &#39;acute accents&#39;, ②</text>
+<text text-anchor="start" x="12" y="-146.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">put text inside, and ③ enjoy a nice formatted</text>
+<text text-anchor="start" x="12" y="-129.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">comment&#45;string, but also get a super cool node</text>
+<text text-anchor="start" x="12" y="-112.8" font-family="DejaVu Sans" font-style="italic" font-size="14.00">description in your graph!</text>
+<text text-anchor="start" x="12" y="-94.8" font-family="DejaVu Sans" font-size="14.00"> </text>
+<text text-anchor="start" x="12" y="-77.8" font-family="DejaVu Sans" font-size="14.00">⚠ The new version (v. 0.2.0) also supports to create</text>
+<text text-anchor="start" x="12" y="-60.8" font-family="DejaVu Sans" font-size="14.00">​    enumerations with ( 1 ), ( 2 ), ... ( 20 ). It is</text>
+<text text-anchor="start" x="12" y="-43.8" font-family="DejaVu Sans" font-size="14.00">​    possible up to number 20. Just use as described</text>
+<text text-anchor="start" x="12" y="-26.8" font-family="DejaVu Sans" font-size="14.00">​    but without spaces. Further, also letters are</text>
+<text text-anchor="start" x="12" y="-9.8" font-family="DejaVu Sans" font-size="14.00">​    supported: ⓧ, ⓨ, Ⓨ, ⓐ, ⓑ, Ⓑ, and so on... (XX)Ⓧ</text>
 </g>
 <!-- Nice node&#45;&gt;Another nice node -->
 <g id="edge1" class="edge">
