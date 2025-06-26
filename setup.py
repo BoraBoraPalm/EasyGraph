@@ -6,7 +6,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8") if (here / "
 
 setup(
     name="easygraph",
-    version="0.2.1",
+    version="0.2.2",
     author="Markus Schuster",
     description="old: pretty Graphviz Digraphs with clusters and formatted nodes",
     long_description=long_description,
