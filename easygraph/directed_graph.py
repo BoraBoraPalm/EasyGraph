@@ -25,7 +25,6 @@ class Graph:
         self.clusters = {}
         self.nodes = {}
         self.dot = Digraph()
-        self._dot_setup()
         self.node_previous_auto: str = None
 
         self.measure_time = measure_time
@@ -38,15 +37,6 @@ class Graph:
         else:
             self.levels = levels
 
-    def _dot_setup(self):
-        """
-        Initial setup of the the graph
-        """
-        self.dot.attr(rankdir='LR') # eep chains from getting too tall
-        self.dot.graph_attr.update({
-            'nodesep': '0.5',   # min horizontal space between nodes
-            'ranksep': '0.75'   # min vertical space between ranks
-        })
 
     def _format_delta(self, delta_seconds: float) -> str:
         """
